@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Base Apparel coming soon page</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* CSS Variables */
+    :root {
+      --pink-400: hsl(0, 36%, 70%);
+      --red-500: hsl(0, 93%, 68%);
+      --gray-900: hsl(0, 6%, 24%);
+      --gradient-light: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+      --gradient-pink: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+    }
+
+    /* Base Styles */
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      background: var(--gradient-light);
+    }
+
+    /* Main Container */
+    .container {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
+
+    /* Header */
+    .header {
+      padding: 2rem 1.5rem;
+    }
+
+    .logo {
+      width: 100px;
+      height: auto;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Content Section */
+    .content {
+      padding: 4rem 1.5rem 2rem;
+      text-align: center;
+      background-image: url('./images/bg-pattern-desktop.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .content h1 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      letter-spacing: 0.5rem;
+      text-transform: uppercase;
+      color: var(--pink-400);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .content h1 .highlight {
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+
+    .content p {
+      color: var(--pink-400);
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* Form Styles */
+    .email-form {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .email-input {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: 1px solid var(--pink-400);
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      background: transparent;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .email-input::placeholder {
+      color: var(--pink-400);
+      opacity: 0.8;
+    }
+
+    .email-input:focus {
+      border-color: var(--gray-900);
+    }
+
+    .email-input.error {
+      border-color: var(--red-500);
+      border-width: 2px;
+    }
+
+    .submit-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      background: var(--gradient-pink);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .submit-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .submit-btn img {
+      width: 12px;
+      height: auto;
+    }
+
+    /* Error States */
+    .error-icon {
+      position: absolute;
+      right: 90px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      display: none;
+    }
+
+    .error-message {
+      position: absolute;
+      left: 1.5rem;
+      top: 100%;
+      margin-top: 0.5rem;
+      color: var(--red-500);
+      font-size: 0.75rem;
+      display: none;
+    }
+
+    .form-group.error .error-icon,
+    .form-group.error .error-message {
+      display: block;
+    }
+
+    /* Attribution */
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+      padding: 1rem;
+      color: var(--pink-400);
+    }
+
+    .attribution a {
+      color: var(--gray-900);
+      text-decoration: none;
+    }
+
+    .attribution a:hover {
+      text-decoration: underline;
+    }
+
+    /* Tablet Portrait Styles */
+    @media (min-width: 480px) {
+      .header {
+        padding: 2.5rem 2rem;
+      }
+
+      .logo {
+        width: 120px;
+      }
+
+      .hero-image {
+        height: 300px;
+      }
+
+      .content {
+        padding: 4rem 2rem 2rem;
+      }
+
+      .content h1 {
+        font-size: 3rem;
+        letter-spacing: 0.7rem;
+      }
+
+      .content p {
+        font-size: 1rem;
+        max-width: 500px;
+        margin: 0 auto 2.5rem;
+      }
+
+      .email-form {
+        max-width: 500px;
+        margin: 0 auto 2rem;
+      }
+
+      .email-input {
+        padding: 1.1rem 1.8rem;
+        font-size: 0.95rem;
+      }
+
+      .submit-btn {
+        width: 90px;
+      }
+
+      .error-icon {
+        right: 100px;
+      }
+    }
+
+    /* Tablet Landscape / Small Desktop */
+    @media (min-width: 768px) {
+      .container {
+        grid-template-columns: 1fr 45%;
+        grid-template-rows: 1fr;
+        max-width: 100vw;
+      }
+
+      .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        padding: 4rem 0 0 6rem;
+      }
+
+      .logo {
+        width: 140px;
+      }
+
+      .hero {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+      }
+
+      .content {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 8rem 4rem 4rem;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-image: url('./images/bg-pattern-desktop.svg');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .content h1 {
+        font-size: 3.2rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.8rem;
+        line-height: 1.05;
+      }
+
+      .content p {
+        font-size: 0.95rem;
+        margin-bottom: 2.5rem;
+        max-width: 380px;
+        margin-left: 0;
+      }
+
+      .email-form {
+        max-width: 400px;
+        margin-left: 0;
+      }
+
+      .email-input {
+        padding: 1.2rem 1.8rem;
+        font-size: 0.95rem;
+      }
+
+      .submit-btn {
+        width: 95px;
+      }
+
+      .error-icon {
+        right: 105px;
+      }
+
+      .error-message {
+        left: 1.8rem;
+      }
+    }
+
+    /* Large Desktop */
+    @media (min-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr 610px;
+      }
+
+      .header {
+        padding: 4rem 0 0 8rem;
+      }
+
+      .logo {
+        width: 158px;
+      }
+
+      .content {
+        padding: 10rem 6rem 4rem;
+      }
+
+      .content h1 {
+        font-size: 4rem;
+        letter-spacing: 1rem;
+      }
+
+      .content p {
+        font-size: 1rem;
+        max-width: 400px;
+      }
+
+      .email-form {
+        max-width: 445px;
+      }
+
+      .email-input {
+        padding: 1.25rem 2rem;
+        font-size: 1rem;
+      }
+
+      .submit-btn {
+        width: 100px;
+      }
+
+      .error-icon {
+        right: 110px;
+      }
+
+      .error-message {
+        left: 2rem;
+      }
+    }
+
+    /* Extra Large Desktop */
+    @media (min-width: 1200px) {
+      .header {
+        padding: 4rem 0 0 10rem;
+      }
+
+      .content {
+        padding: 10rem 8rem 4rem;
+      }
+    }
+
+    /* Ultra Wide Screens */
+    @media (min-width: 1440px) {
+      .container {
+        max-width: 1440px;
+        margin: 0 auto;
+      }
+
+      .header {
+        padding: 4rem 0 0 10rem;
+      }
+
+      .content {
+        padding: 10rem 10rem 4rem;
+      }
+    }
+
+    /* Small Mobile Devices */
+    @media (max-width: 374px) {
+      .header {
+        padding: 1.5rem 1rem;
+      }
+
+      .logo {
+        width: 80px;
+      }
+
+      .hero-image {
+        height: 200px;
+      }
+
+      .content {
+        padding: 3rem 1rem 2rem;
+      }
+
+      .content h1 {
+        font-size: 2rem;
+        letter-spacing: 0.3rem;
+      }
+
+      .content p {
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .email-input {
+        padding: 0.9rem 1.2rem;
+        font-size: 0.8rem;
+      }
+
+      .submit-btn {
+        width: 70px;
+      }
+
+      .error-icon {
+        right: 80px;
+        width: 20px;
+        height: 20px;
+      }
+
+      .error-message {
+        left: 1.2rem;
+        font-size: 0.7rem;
+      }
+    }
+
+    /* Landscape Mobile Devices */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero-image {
+        height: 180px;
+      }
+
+      .content {
+        padding: 2rem 1.5rem 1rem;
+      }
+
+      .content h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .content p {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    /* High DPI Displays */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .hero-image {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+      }
+    }
+
+    /* Reduced Motion Preference */
+    @media (prefers-reduced-motion: reduce) {
+      .submit-btn {
+        transition: none;
+      }
+
+      .submit-btn:hover {
+        transform: none;
+      }
+
+      .email-input {
+        transition: none;
+      }
+    }
+
+    /* Dark Mode Support */
+    @media (prefers-color-scheme: dark) {
+      .attribution {
+        color: var(--pink-400);
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .hero-image {
+        display: none;
+      }
+
+      .submit-btn {
+        display: none;
+      }
+
+      .content {
+        padding: 2rem;
+        background: white;
+      }
+
+      .attribution {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <img src="./images/logo.svg" alt="Base Apparel" class="logo">
+    </header>
+
+    <main class="hero">
+      <picture>
+        <source media="(min-width: 768px)" srcset="./images/hero-desktop.jpg">
+        <img src="./images/hero-mobile.jpg" alt="Fashion model" class="hero-image">
+      </picture>
+    </main>
+
+    <section class="content">
+      <h1><span class="highlight">We're</span> coming soon</h1>
+      <p>Hello fellow shoppers! We're currently building our new fashion store. Add your email below to stay up-to-date with announcements and our launch deals.</p>
+
+      <form class="email-form" novalidate>
+        <div class="form-group">
+          <input
+            type="email"
+            class="email-input"
+            placeholder="Email Address"
+            aria-label="Email Address"
+            required
+          >
+          <img src="./images/icon-error.svg" alt="Error" class="error-icon">
+          <button type="submit" class="submit-btn" aria-label="Submit email">
+            <img src="./images/icon-arrow.svg" alt="Submit">
+          </button>
+          <div class="error-message" role="alert"></div>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+
+  <script>
+    // Email validation and form handling
+    const form = document.querySelector('.email-form');
+    const emailInput = document.querySelector('.email-input');
+    const formGroup = document.querySelector('.form-group');
+    const errorMessage = document.querySelector('.error-message');
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function showError(message) {
+      formGroup.classList.add('error');
+      errorMessage.textContent = message;
+      emailInput.setAttribute('aria-invalid', 'true');
+    }
+
+    function hideError() {
+      formGroup.classList.remove('error');
+      errorMessage.textContent = '';
+      emailInput.setAttribute('aria-invalid', 'false');
+    }
+
+    function validateEmail(email) {
+      if (!email.trim()) {
+        return 'Email address is required';
+      }
+      if (!emailRegex.test(email)) {
+        return 'Please provide a valid email address';
+      }
+      return null;
+    }
+
+    // Real-time validation on input
+    emailInput.addEventListener('input', function() {
+      if (formGroup.classList.contains('error')) {
+        const error = validateEmail(this.value);
+        if (!error) {
+          hideError();
+        }
+      }
+    });
+
+    // Form submission
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = emailInput.value;
+      const error = validateEmail(email);
+
+      if (error) {
+        showError(error);
+        emailInput.focus();
+      } else {
+        hideError();
+        // Here you would typically send the email to your server
+        alert('Thank you! Your email has been added to our mailing list.');
+        emailInput.value = '';
+      }
+    });
+
+    // Clear error on focus
+    emailInput.addEventListener('focus', function() {
+      if (formGroup.classList.contains('error')) {
+        hideError();
+      }
+    });
+  </script>
+</body>
+</html>
