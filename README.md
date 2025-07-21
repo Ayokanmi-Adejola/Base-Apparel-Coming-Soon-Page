@@ -196,8 +196,6 @@ live-server
 
 ## 🤝 Contributing
 
-We welcome contributions to improve this project! Here's how you can help:
-
 ### Development Process
 1. **Fork** the repository
 2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
@@ -302,4 +300,7 @@ base-apparel-coming-soon/
 - **Flexbox Froggy**: Flexbox learning resource
 - **Can I Use**: Browser compatibility reference
 
-# Base-Apparel-Coming-Soon-Page
+  
+## Author
+
+- Frontend Mentor - [@Ayokanmi Adejola](https://www.frontendmentor.io/profile/Ayokanmi-Adejola)
